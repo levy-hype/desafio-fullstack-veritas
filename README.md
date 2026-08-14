@@ -155,3 +155,11 @@ O projeto não possui autenticação ou banco de dados, pois essas funcionalidad
 O fluxo principal de utilização do sistema está disponível em:
 
 `docs/user-flow.png`
+
+## Interface
+
+### Mini Kanban
+
+![Interface do Mini Kanban](docs/kanban-1.png)
+
+![Interface do Mini Kanban](docs/kanban-2.png)
