@@ -1,0 +1,360 @@
+/* Base da aplicação */
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 30px 0 50px;
+  font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #222;
+  font-size: 28px;
+}
+
+.page-header p {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Botões */
+button {
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.primary-button {
+  padding: 10px 16px;
+  border: 1px solid #222;
+  border-radius: 0;
+  background: #222;
+  color: #fff;
+  font-size: 14px;
+}
+
+.primary-button:hover {
+  background: #000;
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.secondary-button {
+  padding: 10px 15px;
+  border: 1px solid #999;
+  border-radius: 0;
+  background: #fff;
+  color: #222;
+  font-size: 13px;
+}
+
+/* Área principal do Kanban */
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.column {
+  min-height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background: #eee;
+}
+
+/* Título de cada coluna */
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 15px;
+  border-bottom: 1px solid #ccc;
+  background: #e5e5e5;
+}
+
+.column-header > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.column-header h2 {
+  margin: 0;
+  color: #222;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.column-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 0;
+  background: #555;
+}
+
+.task-count {
+  color: #555;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Cards */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.task-card {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background: #fff;
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-id {
+  color: #888;
+  font-size: 11px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions button,
+.task-footer button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #444;
+  font-size: 12px;
+}
+
+.card-actions button:hover,
+.task-footer button:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.delete-button:hover {
+  color: #222 !important;
+}
+
+.task-card h3 {
+  margin: 12px 0 6px;
+  color: #222;
+  font-size: 15px;
+}
+
+.task-description {
+  margin: 0;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 28px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.task-footer span {
+  color: #555;
+  font-size: 12px;
+}
+
+/* Quando não existem tarefas na coluna */
+.empty-column {
+  padding: 30px 10px;
+  border: 1px dashed #aaa;
+  border-radius: 0;
+  color: #777;
+  text-align: center;
+  font-size: 13px;
+  background: #f5f5f5;
+}
+
+/* Mensagem de erro */
+.error-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  border: 1px solid #999;
+  border-radius: 0;
+  background: #e8e8e8;
+  color: #222;
+  font-size: 13px;
+}
+
+.error-message button {
+  border: 0;
+  background: transparent;
+  color: #222;
+  text-decoration: underline;
+}
+
+/* Carregamento */
+.loading {
+  display: flex;
+  min-height: 400px;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Modal de criação/edição */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal {
+  width: min(500px, 100%);
+  border: 1px solid #aaa;
+  border-radius: 0;
+  background: #fff;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18px;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-header span {
+  color: #666;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.modal-header h2 {
+  margin: 5px 0 0;
+  color: #222;
+  font-size: 20px;
+}
+
+.close-button {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #444;
+  font-size: 24px;
+}
+
+.modal form {
+  padding: 18px;
+}
+
+.modal label {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 0;
+  background: #fff;
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+  border-color: #222;
+}
+
+.form-error {
+  margin: -5px 0 15px;
+  color: #333;
+  font-size: 12px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 5px;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 850px) {
+  .kanban {
+    grid-template-columns: 1fr;
+  }
+
+  .column {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: calc(100% - 20px);
+    padding-top: 20px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+}
