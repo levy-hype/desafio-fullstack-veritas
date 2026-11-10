@@ -1,165 +1,87 @@
-# Desafio Fullstack - Mini Kanban de Tarefas
+# Mini Kanban de Tarefas
 
-Mini Kanban desenvolvido para o desafio técnico da Veritas Consultoria Empresarial.
+Aplicação full-stack criada para o desafio técnico da Veritas Consultoria Empresarial. O projeto permite organizar tarefas em três etapas, com uma interface React e uma API REST em Go.
 
-A aplicação foi desenvolvida utilizando React no frontend e Go no backend. O sistema permite criar, editar, mover e excluir tarefas através de uma API REST.
+## Funcionalidades
 
-## Tecnologias utilizadas
+- Criar tarefas com título obrigatório e descrição opcional.
+- Editar e excluir tarefas.
+- Mover tarefas entre as colunas A Fazer, Em Progresso e Concluídas.
+- Exibir feedback de carregamento e erros na interface.
+- Validar título e status recebidos pela API.
 
-### Frontend
+## Tecnologias
 
-- React
-- TypeScript
-- Vite
-- CSS
-- Fetch API
+**Frontend:** React, TypeScript, Vite, CSS e Fetch API  
+**Backend:** Go, net/http e armazenamento em memória
 
-### Backend
+## Estrutura
 
-
-- Go
-- net/http
-- API REST
-- Armazenamento em memória
-
-## Estrutura do projeto
-
-```text
+~~~text
 desafio-fullstack-veritas/
 ├── backend/
 │   ├── main.go
 │   ├── handlers.go
 │   └── models.go
-│
 ├── frontend/
 │   ├── package.json
 │   └── src/
-│
 ├── docs/
-│   └── user-flow.png
-│
+│   ├── user-flow.png
+│   ├── kanban-1.png
+│   └── kanban-2.png
 └── README.md
+~~~
 
-## Funcionalidades
+## Executar localmente
 
-- Criar tarefas
-- Editar tarefas
-- Mover tarefas entre as colunas
-- Excluir tarefas
-- Título obrigatório
-- Descrição opcional
-- Três colunas fixas:
-  - A Fazer
-  - Em Progresso
-  - Concluídas
-- Feedback de carregamento
-- Feedback de erros
-- Comunicação com a API REST em Go
+Você precisa de Go, Node.js e npm instalados.
+
+### 1. Iniciar a API
+
+Em um terminal, na raiz do repositório:
+
+~~~bash
+cd backend
+go run .
+~~~
+
+A API fica disponível em http://localhost:8080.
+
+### 2. Iniciar o frontend
+
+Em outro terminal, na raiz do repositório:
+
+~~~bash
+cd frontend
+npm install
+npm run dev
+~~~
+
+Abra o endereço local exibido pelo Vite (normalmente http://localhost:5173).
 
 ## API
 
-O backend possui os seguintes endpoints:
-
-| Método | Endpoint | Descrição |
+| Método | Rota | Descrição |
 |---|---|---|
-| GET | `/tasks` | Lista todas as tarefas |
-| POST | `/tasks` | Cria uma nova tarefa |
-| PUT | `/tasks/{id}` | Atualiza uma tarefa |
-| DELETE | `/tasks/{id}` | Exclui uma tarefa |
+| GET | /tasks | Lista as tarefas |
+| POST | /tasks | Cria uma tarefa |
+| PUT | /tasks/{id} | Atualiza uma tarefa |
+| DELETE | /tasks/{id} | Exclui uma tarefa |
 
-### Status das tarefas
+Os status aceitos são todo, in_progress e done. O corpo de uma tarefa usa os campos id, title, description e status; o id é atribuído pela API na criação.
 
-Os status aceitos pela API são:
+## Decisões e limitações
 
-- `todo`
-- `in_progress`
-- `done`
+- O backend usa o pacote padrão net/http, sem framework externo.
+- As tarefas ficam em memória e são perdidas quando o servidor é encerrado.
+- O projeto não tem banco de dados nem autenticação.
+- Esta é uma implementação de desafio/estudo; não é apresentada como serviço de produção.
 
-O backend valida o título e o status antes de realizar as operações.
+## Fluxo e telas
 
-## Como executar
+Fluxo de uso: [docs/user-flow.png](docs/user-flow.png)
 
-### Backend
+![Tela do Mini Kanban](docs/kanban-1.png)
 
-Abra um terminal na pasta `backend`:
-
-```bash
-cd backend
-```
-
-Execute:
-
-```bash
-go run .
-```
-
-A API será iniciada em:
-
-```text
-http://localhost:8080
-```
-
-### Frontend
-
-Abra outro terminal na pasta `frontend`:
-
-```bash
-cd frontend
-```
-
-Instale as dependências:
-
-```bash
-npm install
-```
-
-Depois execute:
-
-```bash
-npm run dev
-```
-
-O Vite informará no terminal o endereço para acessar a aplicação, normalmente:
-
-```text
-http://localhost:5173
-```
-
-## Decisões técnicas
-
-O backend utiliza o pacote padrão `net/http` do Go para manter a API simples e sem dependências desnecessárias.
-
-As tarefas são armazenadas em memória utilizando structs e uma coleção de tarefas, conforme permitido pelo escopo do desafio.
-
-No frontend foi utilizado React com TypeScript. A comunicação com o backend é realizada através da Fetch API.
-
-A interface foi mantida simples, priorizando a visualização das tarefas e as operações principais do Kanban.
-
-## Limitações conhecidas
-
-Os dados são armazenados apenas em memória. Por isso, as tarefas são perdidas quando o backend é encerrado.
-
-O projeto não possui autenticação ou banco de dados, pois essas funcionalidades não fazem parte do escopo mínimo do desafio.
-
-## Melhorias futuras
-
-- Persistência dos dados em arquivo JSON ou banco de dados
-- Implementação de Drag and Drop
-- Testes automatizados
-- Autenticação de usuários
-- Docker
-- Melhorias de acessibilidade
-
-## User Flow
-
-O fluxo principal de utilização do sistema está disponível em:
-
-`docs/user-flow.png`
-
-## Interface
-
-### Mini Kanban
-
-![Interface do Mini Kanban](docs/kanban-1.png)
-
-![Interface do Mini Kanban](docs/kanban-2.png)
+![Tela do Mini Kanban](docs/kanban-2.png)
